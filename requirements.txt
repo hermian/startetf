@@ -1,0 +1,7 @@
+bt
+finance-datareader
+seaborn
+yfinance
+quantstats
+ipykernel
+beautifulsoup4

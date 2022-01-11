@@ -7,7 +7,7 @@ import numpy as np
 import pandas as pd
 import quantstats as qs
 import seaborn as sns
-from fredapi import Fred
+#from fredapi import Fred
 import pandas_datareader.data as web
 from datetime import datetime
 
