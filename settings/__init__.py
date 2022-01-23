@@ -31,7 +31,7 @@ from IPython.core.interactiveshell import InteractiveShell
 InteractiveShell.ast_node_interactivity = "all"
 # Pandas Dataframe의 사이즈가 큰 경우, 어떻게 화면에 출력을 할지를 세팅하는 코드
 pd.set_option('display.float_format', lambda x: '%.3f' % x)
-pd.set_option('max_columns', None)
+# pd.set_option('max_columns', None)
 
 # %load_ext autoreload
 # %autoreload 2
