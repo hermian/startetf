@@ -123,23 +123,3 @@ r10.prices['2002-2-1':'2017-6'].rebase(1).plot(ax=ax1, lw=2, figsize=(12, 8));
 r20.prices['2002-2-1':'2017-6'].rebase(1).plot(ax=ax1, lw=2, figsize=(12, 8));
 
 # %%
-bt_invvol10 = bt.Backtest(변동성역가중, data[['kodex200', 'kbond10y']], name='10년국채(변동성역가중)', initial_capital=100000000)
-bt_invvol20 = bt.Backtest(변동성역가중, data[['kodex200', 'kbond20y']], name='20년국채(변동성역가중)', initial_capital=100000000)
-
-# %%
-r_2_30 = bt.run(bt_daily_10, bt_invvol10, bt_daily_20, bt_invvol20)
-
-# %%
-r_2_30.set_date_range(start, '2017-06')
-r_2_30.display()
-
-# %%
-#그림 2.30
-r_kospi.set_date_range(start, '2017-06')
-ax1 = r_2_30.plot(figsize=(12,8));
-r_kospi.plot(ax=ax1, ls='--', figsize=(12,8));
-
-# %% [markdown]
-# 책의 그림과 많이 다른데....성능이 책 만큼 나오지 않았다.
-
-# %%
