@@ -151,7 +151,9 @@ r_kospi.plot(ax=ax1, ls='--', color='b', figsize=(12, 8));
 r_현금.plot(ax=ax1, ls='--', color='r', figsize=(12, 8));
 #----
 # r_ms0.plot(ax=ax1, ls='--', color='gray', figsize=(12, 8)); # add hosung
-# XXX 아래 데이터 코스피 값 이상함...2012~ 2016횡보장이 1200대로 나
+# XXX 아래 데이터 코스피 값 이상함...2012~ 2016횡보장이 1200대로 나와야 한다고 봤는데 
+# 맨 아래 차트는 앞쪽을 짤라서 1200대고 이고 그냥은 1400대가 맞다. 기준점이 변해서 나온 현상임
+# 필요하면 kospi다운 받은거 resample
 
 # %%
 # qs.reports.full(r_all.prices['모멘텀 포트폴리오(현금혼합)'].to_returns().dropna()['1986':],
