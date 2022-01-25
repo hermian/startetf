@@ -123,8 +123,14 @@ r.prices['2003-08-01':'2017-6'].resample('MS').first().to_drawdown_series().desc
 r.prices['2003-08-01':'2017-6'].resample('M').last().to_drawdown_series().describe()
 
 # %%
-ax1 = r_spy.prices['2002-2-1':'2017-6'].rebase(1).plot(ls='--', figsize=(12, 8));
-r10.prices['2002-2-1':'2017-6'].rebase(1).plot(ax=ax1, lw=2, figsize=(12, 8));
-r20.prices['2002-2-1':'2017-6'].rebase(1).plot(ax=ax1, lw=2, figsize=(12, 8));
+ax1 = r_spy.prices['2003-8-1':'2017-6'].rebase(1).plot(ls='--', figsize=(12, 8));
+r10.prices['2003-8-1':'2017-6'].rebase(1).plot(ax=ax1, lw=2, figsize=(12, 8));
+r20.prices['2003-8-1':'2017-6'].rebase(1).plot(ax=ax1, lw=2, figsize=(12, 8));
 
 # %%
+r_all = bt.run(bt_10, bt_20, bt_spy)
+plot_assets(r_all, '2003-8', '2021', 'SPY+IEF+SHY')
+
+# %%
+r_all.set_date_range('2003-8-1')
+r_all.display()
