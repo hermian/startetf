@@ -241,7 +241,7 @@ def strategy_targetvol_with_ams(name, data, targetvol=0.01, months=12, lag=pd.Da
                 bt.algos.Rebalance()
             ]
     )
-    return bt.Backtest(s, data_daily, initial_capital=100000000.0)
+    return bt.Backtest(s, data, initial_capital=100000000.0)
 
 # %%
 bt목표1모멘텀 = strategy_targetvol_with_ams("목표1%모멘텀", data_daily, targetvol=0.01)
