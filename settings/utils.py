@@ -134,3 +134,37 @@ def upi(prices, rf=0.0, nperiods=None):
     # print(er.mean())
 
     return np.divide(er.mean(), ulcer_index(prices))
+
+
+class PrintDate(bt.Algo):
+    def __init__(self, name):
+        self.이름 = name
+
+    def __call__(self, target):
+        print(f"{self.이름} ==> {target.now}")
+        return True
+
+class PrintLine(bt.Algo):
+    def __init__(self, name):
+        self.이름 = name
+
+    def __call__(self, target):
+        print("\n===============================================================================")
+        print(f"{self.이름} ==> {target.now}")
+        return True
+    
+class PrintTempWeights(bt.Algo):
+    def __init__(self, fmt_string='{now} {name}'):
+        super(PrintTempWeights, self).__init__()
+        self.fmt_string = fmt_string
+
+
+    def __call__(self, target):  
+        print(self.fmt_string.format(**target.__dict__), end=" ")
+
+        weights = target.temp['weights']
+        for i, v in weights.items():
+            print(f"{i}:{v:.3f}", end=" ")
+        print("")            
+
+        return True
