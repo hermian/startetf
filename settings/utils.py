@@ -135,6 +135,35 @@ def upi(prices, rf=0.0, nperiods=None):
 
     return np.divide(er.mean(), ulcer_index(prices))
 
+def 평균모멘텀(데이터, 개월=12):
+    초기값 = 0
+    for i in range(1, 개월+1):
+        초기값 = 데이터 / 데이터.shift(i) + 초기값
+    return 초기값 / 개월
+
+def 모멘텀순위(데이터, 순위):
+    x = 평균모멘텀(데이터)
+    y = x.iloc[ : , 0: len(x.columns)].rank(1, ascending=0)
+    y[y <= 순위] = 1
+    y[y > 순위] = 0
+    return y
+
+def 평균모멘텀스코어(데이터):
+    a = 평균모멘텀(데이터).copy()
+    초기값 = 0
+    for i in range(1, 13):
+        초기값 = np.where(데이터 / 데이터.shift(i) > 1, 1, 0) + 초기값
+    a[a > -1] = 초기값/12
+    return a
+
+def 평균모멘텀스코어6(데이터):
+    a = 평균모멘텀(데이터, 6).copy() # bug 수익곡선은 6개월만 있으면 되는 12개월을 잡아먹음
+    초기값 = 0
+    for i in range(1, 7):
+        초기값 = np.where(데이터 / 데이터.shift(i) > 1, 1, 0) + 초기값
+    a[a > -1] = 초기값/6
+    return a
+
 
 class PrintDate(bt.Algo):
     def __init__(self, name):
