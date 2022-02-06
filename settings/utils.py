@@ -69,6 +69,10 @@ def plot_assets(backtest_result, start, end, strategy_name, **kwargs):
         res1.prices[start:end].to_drawdown_series().plot.area(stacked=False,legend=True, ax=ax2, **kwargs)
     res1.prices.loc[start:end,strategy_name].to_drawdown_series().plot(legend=False, color='black', alpha=1, lw=1, ls='-', ax=ax2)
 
+    print(res1.prices[start:end].calc_cagr().to_frame().rename(columns={0: "CAGR"})*100)
+    print(res1.prices[start:end].calc_max_drawdown().to_frame().rename(columns={0: "MDD"})*100)
+
+
 def 투자진입시점별CAGRMDD(backtest, title, miny=None, maxy=None):
     """
 
@@ -181,19 +185,19 @@ class PrintLine(bt.Algo):
         print("\n===============================================================================")
         print(f"{self.이름} ==> {target.now}")
         return True
-    
+
 class PrintTempWeights(bt.Algo):
     def __init__(self, fmt_string='{now} {name}'):
         super(PrintTempWeights, self).__init__()
         self.fmt_string = fmt_string
 
 
-    def __call__(self, target):  
+    def __call__(self, target):
         print(self.fmt_string.format(**target.__dict__), end=" ")
 
         weights = target.temp['weights']
         for i, v in weights.items():
             print(f"{i}:{v:.3f}", end=" ")
-        print("")            
+        print("")
 
         return True
